@@ -10,9 +10,10 @@ def get_pusher(uri: str):
     result: parse.ParseResult = parse.urlparse(uri)
     if result.scheme != "knotify":
         raise KnotifyException("Invalid url scheme")
+    netloc = result.netloc
     params = dict(parse.parse_qsl(result.query))
     try:
-        eval(f"{result.netloc}(**{params})")
+        return eval(f"{netloc}(**params)")
     except Exception as e:
         raise KnotifyException(e)
 

@@ -1,7 +1,4 @@
-from knotify import WirePusher
+from knotify.utils import get_pusher
 
-a = WirePusher("aaa")
-m = a.verify_msg(123)
-print(m)
+a = get_pusher("knotify://WirePusher?key=fuckyou")
 print(a)
-

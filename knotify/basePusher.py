@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Union
+from asyncio import run
 
 from aiohttp import ClientSession
 
@@ -41,4 +42,4 @@ class BasePusher(ABC):
         return "{}(uri={})".format(self.__class__.__name__, self.uri)
 
     def __del__(self):
-        await self.session.close()
+        run(self.session.close())
