@@ -1,5 +1,4 @@
 from .basePusher import BasePusher
-from .message import Msg
 from typing import List, Callable
 from aiohttp import ClientSession
 
@@ -10,7 +9,7 @@ class PusherCluster:
         self.session = ClientSession()
         pass
 
-    def push(self, message=Msg("Empty Title"), *args, **kwargs):
+    def push(self, message="Empty Title", *args, **kwargs):
         for pusher in self._pusher_list:
             pusher.push(message=message)
 

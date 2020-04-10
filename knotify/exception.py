@@ -1,0 +1,2 @@
+class KnotifyException(Exception):
+    pass

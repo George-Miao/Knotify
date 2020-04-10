@@ -1,4 +1,5 @@
-from knotify.utils import get_pusher
+from knotify.pusher import Telegram
 
-a = get_pusher("knotify://WirePusher?key=fuckyou")
-print(a)
+a = Telegram("9qvms8zjk8pxhg04")
+
+a.push("aaa")

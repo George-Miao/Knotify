@@ -1,22 +1,5 @@
 from typing import List
 
-from urllib import parse
-
-
-__all__ = ["get_pusher", "build_uri", "KnotifyException"]
-
-
-def get_pusher(uri: str):
-    result: parse.ParseResult = parse.urlparse(uri)
-    if result.scheme != "knotify":
-        raise KnotifyException("Invalid url scheme")
-    netloc = result.netloc
-    params = dict(parse.parse_qsl(result.query))
-    try:
-        return eval(f"{netloc}(**params)")
-    except Exception as e:
-        raise KnotifyException(e)
-
 
 def build_uri(scheme: str, loc: str, paths: List[str] = [], **kwargs) -> str:
     """
@@ -30,7 +13,3 @@ def build_uri(scheme: str, loc: str, paths: List[str] = [], **kwargs) -> str:
     path = "/" + "/".join(paths) if paths else ""
     params = "?" + "&".join([f"{k}={kwargs[k]}" for k in kwargs.keys()]) if kwargs else ""
     return "{}://{}{}{}".format(scheme, loc, path, params)
-
-
-class KnotifyException(Exception):
-    pass
