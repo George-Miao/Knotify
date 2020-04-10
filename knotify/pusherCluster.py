@@ -1,6 +1,8 @@
-from .basePusher import BasePusher
 from typing import List, Callable
+
 from aiohttp import ClientSession
+
+from .basePusher import BasePusher
 
 
 class PusherCluster:

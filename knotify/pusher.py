@@ -1,5 +1,6 @@
-from requests import Session
 from urllib import parse
+
+from requests import Session
 
 from .basePusher import BasePusher
 from .exception import KnotifyException
