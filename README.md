@@ -12,7 +12,7 @@ Then inside your program:
 ```python
 from knotify import WirePusher
 w = WirePusher("Your_Token_From_WirePusher")
-w.push("FooBar")
+w.emit("FooBar")
 ```
 
 ## Requirement
