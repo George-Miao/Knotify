@@ -6,11 +6,11 @@ Include Telegram Bot, Webhook, WirePusher, Wechat Bot (Server Chan)
 ## Quick Start
 Use pip to install Knotify first:
 ```shell
-pip install Knotify
+pip install knotify
 ```
 Then inside your program:
 ```python
-from Knotify import WirePusher
+from knotify import WirePusher
 w = WirePusher("Your_Token_From_WirePusher")
 w.push("FooBar")
 ```
