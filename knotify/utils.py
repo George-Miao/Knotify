@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Type
 
 
 def build_uri(scheme: str, loc: str, paths: List[str] = [], **kwargs) -> str:
@@ -13,3 +13,7 @@ def build_uri(scheme: str, loc: str, paths: List[str] = [], **kwargs) -> str:
     path = "/" + "/".join(paths) if paths else ""
     params = "?" + "&".join([f"{k}={kwargs[k]}" for k in kwargs.keys()]) if kwargs else ""
     return "{}://{}{}{}".format(scheme, loc, path, params)
+
+
+def get_cls_name(cls):
+    return cls.__name__.lower()
