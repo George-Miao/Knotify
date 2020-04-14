@@ -11,8 +11,8 @@ pip install knotify
 Then inside your program:
 ```python
 from knotify import WirePusher
-w = WirePusher("Your_Token_From_WirePusher")
-w.emit("FooBar")
+async with WirePusher("Your_Token_From_WirePusher") as w:
+    w.emit("FooBar")
 ```
 
 ## Requirement
