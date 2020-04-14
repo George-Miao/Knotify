@@ -1,5 +1,4 @@
-from typing import List, Callable, Union
-from sys import stdout
+from typing import List, Union
 
 from knotify.base_pusher import BasePusher
 

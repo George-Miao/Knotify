@@ -1,4 +1,4 @@
-from typing import List, Type
+from typing import List
 
 
 def build_uri(scheme: str, loc: str, paths: List[str] = [], **kwargs) -> str:

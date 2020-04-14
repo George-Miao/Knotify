@@ -1,5 +1,5 @@
-from typing import List
 import logging
+from typing import List
 
 from .base_pusher import BasePusher
 from .exception import KnotifyException

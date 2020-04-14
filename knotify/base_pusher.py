@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
-from typing import List, Dict, Tuple
 from sys import stdout
+from typing import List, Dict, Tuple
 
 import aiohttp
 
-from knotify.utils import build_uri
 from knotify.exception import KnotifyException
+from knotify.utils import build_uri
 
 
 class BasePusher(ABC):
@@ -26,7 +26,7 @@ class BasePusher(ABC):
 
     async def _push(self, message, **kwargs) -> bool:
         """
-        Overload the this function to create custom pusher
+        Overload this function to create custom pusher
         :param message: message to be sent
         :param kwargs: all params to be sent
             use function `_build_body` to build a dict for params
@@ -97,6 +97,11 @@ class BasePusher(ABC):
 
     @staticmethod
     def _check_result(result: aiohttp.ClientResponse):
+        """
+        Check result after requesting an http api
+        :param result: the result from aiohttp
+        :return: True if the requesting is successful
+        """
         code = result.status
         if 400 <= code < 500:
             http_error_msg = '{} Client Error: {}} for url: {}'.format(code, result.reason, result.url)

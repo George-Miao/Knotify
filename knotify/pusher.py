@@ -1,7 +1,5 @@
 from urllib import parse
 
-import requests
-
 from .base_pusher import BasePusher
 from .exception import KnotifyException
 from .utils import get_cls_name
