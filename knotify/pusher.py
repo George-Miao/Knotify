@@ -21,9 +21,10 @@ class Webhook(BasePusher):
         super().__init__(show_message)
         self.url = url
 
-    def _push(self, message, **kwargs):
+    async def _push(self, message, **kwargs):
         kwargs.setdefault("content", message)
-        return self._check_result(self.s.post(self.url, json=kwargs))
+        async with self.s.post(self.url, json=kwargs) as result:
+            return self._check_result(result)
 
     @property
     def uri(self):
@@ -40,14 +41,14 @@ class Telegram(BasePusher):
         super().__init__(show_message)
         self.token = token
 
-    def _push(self, message, **kwargs):
+    async def _push(self, message, **kwargs):
         req_body = {
             "text": message,
             "parse_mode": "Markdown"
         }
         req_body.update(kwargs)
-        return self._check_result(
-            self.s.post(self._api.format(token=self.token), json=req_body))
+        async with self.s.post(self._api.format(token=self.token), json=req_body) as resuls:
+            return self._check_result(resuls)
 
     @property
     def uri(self):
@@ -64,9 +65,9 @@ class Wechat(BasePusher):
         super().__init__(show_message)
         self.sckey = sckey
 
-    def _push(self, message, **kwargs):
-        return self._check_result(
-            self.s.get(self._api.format(sckey=self.sckey), params=dict(text=message)))
+    async def _push(self, message, **kwargs):
+        async with self.s.get(self._api.format(sckey=self.sckey), params=dict(text=message)) as result:
+            return self._check_result(result)
 
     @property
     def uri(self):
@@ -85,11 +86,12 @@ class WirePusher(BasePusher):
         super().__init__(show_message)
         self.pid = pid
 
-    def _push(self, message, **kwargs):
+    async def _push(self, message, **kwargs):
         kwargs.setdefault("id", self.pid)
         kwargs.setdefault("title", "Knotify Message")
         req_body, _ = self._build_body(self._args, kwargs, self._mandatory, message=message)
-        return self._check_result(self.s.get(self._api, params=req_body))
+        async with self.s.get(self._api, params=req_body) as req:
+            return self._check_result(req)
 
     @property
     def uri(self):
