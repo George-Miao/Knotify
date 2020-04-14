@@ -33,18 +33,18 @@ async def main():
     await w.close()
 ```
 ## Pre-defined Pushers
-#### Webhook
+### Webhook
 The "key" will be the url you want to post to itself
 
 e.g. [Discord Server Webhook](https://support.discordapp.com/hc/en-us/articles/228383668)
 
-#### Wechat
+### Wechat
 The wechat client is [Server Chan(Server酱)](http://sc.ftqq.com/3.version) and the key will be `sckey`
 
-#### Telegram
+### Telegram
 The telegram client is `tg_push_bot` from Fndroid. [Use Manual](https://github.com/Fndroid/tg_push_bot/blob/master/README.md)
 
-#### WirePusher
+### WirePusher
 [WirePusher](http://wirepusher.com/) is an Android app that allows you to send push notifications right to your device.
 
 ## Custom Pusher
